@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details | BookMyCollegeEvent</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="event.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="bg-gray">
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; font-size: 1.5rem; font-weight: 800; color: #fff;">
+                    BookMyCollegeEvent
+                </a>
+            </div>
+            
+            <div class="search-bar">
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="Search for Fests, Hackathons, Sports...">
+            </div>
+
+            <div class="nav-actions">
+                <button class="filter-btn-header">
+                    <i class='bx bx-user-circle'></i> Profile
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Event Banner -->
+    <div class="event-banner">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&auto=format&fit=crop&q=80" alt="Banner" class="banner-img">
+    </div>
+
+    <!-- Event Details Section -->
+    <main class="event-details-container">
+        <div class="event-grid-layout">
+            
+            <!-- Left Column: Poster Image -->
+            <div class="event-left">
+                <div class="event-poster-wrapper">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=80" alt="Event Poster" class="event-poster">
+                </div>
+            </div>
+
+            <!-- Right Column: Event Info -->
+            <div class="event-right">
+                <div class="event-tags">
+                    <span class="tag-category">Hackathons</span>
+                </div>
+                
+                <h1 class="event-page-title">HackTheFuture 2026</h1>
+                
+                <div class="event-meta-list">
+                    <div class="meta-item">
+                        <div class="meta-icon"><i class='bx bx-calendar'></i></div>
+                        <div class="meta-text">
+                            <strong>Date & Time</strong>
+                            <span>October 15, 2026 • 9:00 AM - 5:00 PM</span>
+                        </div>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <div class="meta-icon"><i class='bx bxs-institution'></i></div>
+                        <div class="meta-text">
+                            <strong>College / University</strong>
+                            <span>Tech Institute of Science</span>
+                        </div>
+                    </div>
+
+                    <div class="meta-item">
+                        <div class="meta-icon"><i class='bx bx-map'></i></div>
+                        <div class="meta-text">
+                            <strong>Venue / Location</strong>
+                            <span>Main Auditorium, Campus Block A</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-description-section">
+                    <h3>About The Event</h3>
+                    <p>
+                        Join us for the most anticipated coding event of the year! HackTheFuture 2026 brings together the brightest minds to solve real-world problems using cutting-edge technology. Whether you're a seasoned developer or a passionate beginner, this 48-hour hackathon will challenge your limits and spark your creativity.
+                    </p>
+                    <p>
+                        Food, drinks, and swag will be provided. Awesome prizes await the winning teams!
+                    </p>
+                </div>
+
+                <div class="event-action-bar">
+                    <div class="price-info">
+                        <span>Entry Fee</span>
+                        <strong>Free</strong>
+                    </div>
+                    <button class="btn-register">Register Now</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

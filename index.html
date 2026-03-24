@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookMyCollegeEvent | Discover &amp; Book Events</title>
+    <meta name="description" content="Find, explore, and join the most exciting events happening in your college and nearby campuses.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class='bx bx-calendar-event'></i>
+                <span>We show latest college events — hackathons, fests, workshops &amp; more.</span>
+            </div>
+            <img src="assets/logo.png" alt="BookMyCollegeEvent" class="hero-main-logo">
+            <h1 class="hero-title">Discover College Events <span class="hero-highlight">Like Never Before</span></h1>
+            <p class="hero-sub">Find, explore, and join the most exciting events happening in your college and nearby campuses.</p>
+
+            <!-- Search Bar (moved from navbar) -->
+            <div class="search-bar">
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="Search for Fests, Hackathons, Sports, Workshops...">
+            </div>
+
+            <a href="#events" class="cta-btn">
+                Explore Events <i class='bx bx-right-arrow-alt'></i>
+            </a>
+        </div>
+        <div class="hero-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Filter / Category Bar -->
+    <section class="filter-bar-wrapper">
+        <div class="filter-container">
+            <div class="categories">
+                <button class="cat-btn active">All</button>
+                <button class="cat-btn">Hackathons</button>
+                <button class="cat-btn">Sports</button>
+                <button class="cat-btn">Fests</button>
+                <button class="cat-btn">Workshops</button>
+                <button class="cat-btn">Others</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Events Section -->
+    <main class="main-content" id="events">
+        <div class="section-header">
+            <h2>Recommended Events</h2>
+            <p class="section-sub">Handpicked events just for you</p>
+        </div>
+
+        <div class="event-grid" id="eventGrid">
+            <!-- Event Cards rendered via JS -->
+        </div>
+    </main>
+
+    <!-- About Us Section -->
+    <section class="about-section">
+        <div class="about-container">
+            <div class="about-icon">
+                <i class='bx bx-book-heart'></i>
+            </div>
+            <h2>About Us</h2>
+            <p>BookMyCollegeEvent is a platform designed to help students discover and participate in college events like hackathons, fests, workshops, and more. Our mission is to make event discovery simple, fast, and accessible across campuses.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <p>Making college event discovery simple, fast, and accessible for every student.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                    <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html"><i class='bx bx-chevron-right'></i> Home</a></li>
+                    <li><a href="#events"><i class='bx bx-chevron-right'></i> Events</a></li>
+                    <li><a href="#about"><i class='bx bx-chevron-right'></i> About</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class='bx bx-envelope'></i> <a href="mailto:bookmycollegeevent@gmail.com">bookmycollegeevent@gmail.com</a></li>
+                    <li><i class='bx bx-map'></i> India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 BookMyCollegeEvent. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

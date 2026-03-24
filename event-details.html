@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details | BookMyCollegeEvent</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="event-details.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="bg-gray">
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; font-size: 1.5rem; font-weight: 800; color: #fff;">
+                    BookMyCollegeEvent
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Event Details Content -->
+    <main class="details-container">
+        <div class="details-card">
+            <div id="carouselContainer">
+                <div class="banner-wrapper">
+                    <img src="https://via.placeholder.com/1600x700?text=No+Image" alt="Event Banner" id="detailImage" class="detail-banner" loading="lazy">
+                </div>
+            </div>
+            
+            <div class="details-content">
+                <h1 id="detailTitle" class="detail-title">Loading Event...</h1>
+                
+                <div class="detail-meta-list">
+                    <div class="detail-meta">
+                        <i class='bx bxs-institution'></i>
+                        <span id="detailVenue">Venue Loading...</span>
+                    </div>
+                    
+                    <div class="detail-meta">
+                        <i class='bx bx-calendar'></i>
+                        <span id="detailDate">Date Loading...</span>
+                    </div>
+                </div>
+
+                <div class="detail-description-card" id="detailDescCard">
+                    <div id="detailDesc">
+                        This is a placeholder for the event description. The details will be loaded dynamically based on the event you clicked on the previous page.
+                    </div>
+                </div>
+
+                <div id="registerContainer" style="display: none; margin-top: 32px; width: 100%; max-width: 400px;">
+                    <a href="#" id="detailRegisterBtn" target="_blank" rel="noopener noreferrer" class="btn-enhanced">
+                        Register Now <i class='bx bx-link-external'></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <button id="closeLightbox" class="close-lightbox"><i class='bx bx-x'></i></button>
+        <div class="lightbox-content">
+            <img src="" alt="Zoomed Event Banner" id="lightboxImage" class="lightbox-image">
+        </div>
+    </div>
+
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
