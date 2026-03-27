@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
     
+     
     // Initialize Supabase
     const supabaseUrl = 'https://cbqbqncbjxfwrhhgxmjk.supabase.co';
     const supabaseKey = 'sb_publishable_XEBmcn5vcJGWBDO3GH9GRw_f55J9d9_';
@@ -41,11 +42,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         const eventId = params.get("id"); // UUID string
         
         if (eventId) {
-            // Fetch single event
+            // Fetch single event (fallback to UUID if using old links)
+            const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(eventId);
+            const matchCol = isUUID ? 'id' : 'event_id';
             const { data: currentEvent, error } = await supabase
                 .from('events')
                 .select('*')
-                .eq('id', eventId)
+                .eq(matchCol, eventId)
                 .single();
             
             if (currentEvent && !error) {
@@ -118,7 +121,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     } else if (images.length === 1) {
                         carouselContainer.innerHTML = `<div class="banner-wrapper"><img src="${images[0]}" alt="${currentEvent.title}" class="detail-banner lightbox-trigger" loading="lazy"></div>`;
                     } else {
-                        carouselContainer.innerHTML = `<div class="banner-wrapper"><img src="https://via.placeholder.com/1600x700?text=No+Image" alt="No image available" class="detail-banner"></div>`;
+                        carouselContainer.innerHTML = `<div class="banner-wrapper"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='700' fill='%23e2e8f0'%3E%3Crect width='100%25' height='100%25'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='Inter,sans-serif' font-size='24'%3ENo Image%3C/text%3E%3C/svg%3E" alt="No image available" class="detail-banner"></div>`;
                     }
                 }
                 document.getElementById("detailTitle").textContent = currentEvent.title;
@@ -150,7 +153,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                         regContainer.style.display = "block";
                     }
                 }
- // Share Event Logic
+
+                // Share Event Logic
                 const shareBtn = document.getElementById('shareEventBtn');
                 if (shareBtn) {
                     shareBtn.addEventListener('click', () => {
