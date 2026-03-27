@@ -150,6 +150,26 @@ document.addEventListener("DOMContentLoaded", async () => {
                         regContainer.style.display = "block";
                     }
                 }
+ // Share Event Logic
+                const shareBtn = document.getElementById('shareEventBtn');
+                if (shareBtn) {
+                    shareBtn.addEventListener('click', () => {
+                        const urlId = currentEvent.event_id || currentEvent.id;
+                        let baseUrl = window.location.origin + window.location.pathname;
+                        const shareUrl = `${baseUrl}?id=${urlId}`;
+                        const whatsappUrl = `https://api.whatsapp.com/send?text=Check out this event: ${encodeURIComponent(shareUrl)}`;
+                        
+                        navigator.clipboard.writeText(shareUrl).then(() => {
+                            const originalHTML = shareBtn.innerHTML;
+                            shareBtn.innerHTML = "<i class='bx bx-check'></i> Copied!";
+                            setTimeout(() => shareBtn.innerHTML = originalHTML, 2000);
+                        });
+
+                        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                            window.open(whatsappUrl, '_blank');
+                        }
+                    });
+                }
 
                 // Lightbox logic
                 const lightboxModal = document.getElementById("lightboxModal");
@@ -265,7 +285,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // Build image section: scrollable strip or single image
             const allImages = (event.thumbnail_urls && event.thumbnail_urls.length > 0)
                 ? event.thumbnail_urls
-                : [(event.thumbnail_url || event.image_url || 'https://via.placeholder.com/800x600?text=No+Image')];
+                : [(event.thumbnail_url || event.image_url || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' fill='%23e2e8f0'%3E%3Crect width='100%25' height='100%25'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='Inter,sans-serif' font-size='20'%3ENo Image%3C/text%3E%3C/svg%3E")];
 
             let imageHTML = '';
             let dotsHTML = '';
@@ -288,8 +308,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             const rawCat = (event.category || '').trim();
             const displayCategory = (!rawCat || rawCat.toLowerCase() === 'others') ? 'General' : rawCat;
 
+            const urlId = event.event_id || event.id;
             const card = document.createElement("a"); 
-            card.href = `event-details.html?id=${event.id}`;
+            card.href = `event-details.html?id=${urlId}`;
             card.className = "event-card";
             card.innerHTML = `
                 <div class="card-img-wrapper">
@@ -304,12 +325,28 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <div class="card-college">
                         <i class='bx bxs-institution'></i> ${event.college_name}
                     </div>
-                    <div class="card-footer">
-                        <i class='bx bx-calendar'></i> ${formattedDate}
+                    <div class="card-footer" style="display: flex; justify-content: space-between; align-items: center;">
+                        <span><i class='bx bx-calendar'></i> ${formattedDate}</span>
+                        <button class="card-share-btn" data-url="${window.location.origin}${window.location.pathname.replace('index.html', '')}/event-details.html?id=${urlId}" style="background: var(--bg-color, #f8fafc); border: 1px solid var(--border-color, #e2e8f0); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--primary); transition: 0.3s;" title="Copy Link"><i class='bx bx-copy'></i></button>
                     </div>
                 </div>
             `;
             eventGrid.appendChild(card);
+
+            // Copy Link Card Logic
+            const shareCardBtn = card.querySelector('.card-share-btn');
+            if (shareCardBtn) {
+                shareCardBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const shareUrl = e.currentTarget.getAttribute('data-url').replace(/([^:]\/)\/+/g, "$1"); // Cleanup double slashes
+                    
+                    navigator.clipboard.writeText(shareUrl).then(() => {
+                        e.currentTarget.innerHTML = "<i class='bx bx-check'></i>";
+                        setTimeout(() => e.currentTarget.innerHTML = "<i class='bx bx-copy'></i>", 2000);
+                    });
+                });
+            }
 
             // Activate scroll-dot sync for this card
             const scrollEl = card.querySelector('[data-card-scroll]');
