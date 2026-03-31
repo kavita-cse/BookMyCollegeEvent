@@ -394,11 +394,30 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // Search logic — uses existing search bar, no HTML changes
+      // Search logic — dynamic toggle & debounce
     if (searchInput) {
+        let debounceTimer;
         searchInput.addEventListener("input", () => {
-            searchQuery = searchInput.value;
-            renderEvents();
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                searchQuery = searchInput.value;
+                const recSec = document.getElementById("recommended-section");
+                const searchSec = document.getElementById("search-results");
+                const searchSub = document.getElementById("search-subtext");
+
+                if (recSec && searchSec && searchSub) {
+                    if (searchQuery.trim() !== "") {
+                        recSec.style.display = "none";
+                        searchSec.style.display = "block";
+                        searchSub.textContent = `You searched for "${searchQuery.trim()}"`;
+                    } else {
+                        recSec.style.display = "block";
+                        searchSec.style.display = "none";
+                    }
+                }
+                
+                renderEvents();
+            }, 300);
         });
     }
 
