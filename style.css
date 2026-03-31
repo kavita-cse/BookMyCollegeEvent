@@ -283,6 +283,34 @@ a {
     left: 60%;
 }
 
+/* Hero Search Animation */
+.hero {
+    transition: padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero.search-active {
+    padding: 30px 40px 10px 40px; /* Minimal padding to remove distance */
+}
+
+.hero-collapse {
+    transition: opacity 0.4s ease, max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), margin 0.4s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 600px;
+    opacity: 1;
+    overflow: hidden;
+    transform: translateY(0);
+}
+
+.hero.search-active .hero-collapse {
+    opacity: 0;
+    max-height: 0;
+    margin: 0;
+    transform: translateY(-20px);
+}
+
+.hero.search-active .search-bar {
+    margin-bottom: 0;
+}
+
 /* ==============================
    FILTER / CATEGORY BAR
 ============================== */
@@ -845,3 +873,4 @@ a {
         grid-template-columns: 1fr;
     }
 }
+

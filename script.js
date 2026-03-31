@@ -268,16 +268,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         if (filtered.length === 0) {
-            if (query) {
-                eventGrid.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
-                        <p style="color: var(--text-color); font-size: 1.1rem; margin-bottom: 10px;">No events found for '${searchQuery.trim()}'</p>
-                        <p style="color: var(--text-light); font-size: 0.95rem;">Try searching for fests, hackathons, sports</p>
-                    </div>
-                `;
-            } else {
-                eventGrid.innerHTML = "<p style='grid-column: 1/-1; text-align: center; color: var(--text-light); padding: 40px;'>No events found.</p>";
-            }
+            eventGrid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                    <p style="color: var(--text-color); font-size: 1.1rem;">No events found</p>
+                </div>
+            `;
             return;
         }
 
@@ -395,24 +390,47 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Search logic — dynamic toggle & debounce
     if (searchInput) {
+        const heroSection = document.querySelector(".hero");
+
+        searchInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                if (searchInput.value.trim() !== "") {
+                    heroSection.classList.add("search-active");
+                }
+            }
+        });
+
         let debounceTimer;
         searchInput.addEventListener("input", () => {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(() => {
                 searchQuery = searchInput.value;
+                const isSearching = searchQuery.trim() !== "";
+
+                if (!isSearching && heroSection) {
+                    heroSection.classList.remove("search-active");
+                }
+
+                // DOM Elements
                 const recSec = document.getElementById("recommended-section");
                 const searchSec = document.getElementById("search-results");
                 const searchSub = document.getElementById("search-subtext");
+                const exploreBtn = document.getElementById("explore-btn");
+                const categoryFilters = document.getElementById("category-filters");
 
-                if (recSec && searchSec && searchSub) {
-                    if (searchQuery.trim() !== "") {
-                        recSec.style.display = "none";
-                        searchSec.style.display = "block";
-                        searchSub.textContent = `You searched for "${searchQuery.trim()}"`;
-                    } else {
-                        recSec.style.display = "block";
-                        searchSec.style.display = "none";
-                    }
+                if (isSearching) {
+                    if (recSec) recSec.style.display = "none";
+                    if (exploreBtn) exploreBtn.style.display = "none";
+                    if (categoryFilters) categoryFilters.style.display = "none";
+                    
+                    if (searchSec) searchSec.style.display = "block";
+                    if (searchSub) searchSub.textContent = `You searched for: "${searchQuery.trim()}"`;
+                } else {
+                    if (exploreBtn) exploreBtn.style.display = "";
+                    if (categoryFilters) categoryFilters.style.display = "";
+                    if (recSec) recSec.style.display = "block";
+                    
+                    if (searchSec) searchSec.style.display = "none";
                 }
                 
                 renderEvents();

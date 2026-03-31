@@ -35,13 +35,15 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-badge">
-                <i class='bx bx-calendar-event'></i>
-                <span>We show latest college events — hackathons, fests, workshops &amp; more.</span>
+            <div class="hero-collapse">
+                <div class="hero-badge">
+                    <i class='bx bx-calendar-event'></i>
+                    <span>We show latest college events — hackathons, fests, workshops &amp; more.</span>
+                </div>
+                <img src="assets/logo.png" alt="BookMyCollegeEvent" class="hero-main-logo">
+                <h1 class="hero-title">Discover College Events <span class="hero-highlight">Like Never Before</span></h1>
+                <p class="hero-sub">Find, explore, and join the most exciting events happening in your college and nearby campuses.</p>
             </div>
-            <img src="assets/logo.png" alt="BookMyCollegeEvent" class="hero-main-logo">
-            <h1 class="hero-title">Discover College Events <span class="hero-highlight">Like Never Before</span></h1>
-            <p class="hero-sub">Find, explore, and join the most exciting events happening in your college and nearby campuses.</p>
 
             <!-- Search Bar (moved from navbar) -->
             <div class="search-bar">
@@ -49,7 +51,7 @@
                 <input type="text" placeholder="Search for Fests, Hackathons, Sports, Workshops...">
             </div>
 
-            <a href="#events" class="cta-btn">
+            <a href="#events" class="cta-btn" id="explore-btn">
                 Explore Events <i class='bx bx-right-arrow-alt'></i>
             </a>
         </div>
@@ -61,7 +63,7 @@
     </section>
 
     <!-- Filter / Category Bar -->
-    <section class="filter-bar-wrapper">
+    <section class="filter-bar-wrapper" id="category-filters">
         <div class="filter-container">
             <div class="categories">
                 <button class="cat-btn active">All</button>
