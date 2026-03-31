@@ -269,7 +269,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         if (filtered.length === 0) {
-            eventGrid.innerHTML = "<p style='grid-column: 1/-1; text-align: center; color: var(--text-light); padding: 40px;'>No events found.</p>";
+            if (query) {
+                eventGrid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                        <p style="color: var(--text-color); font-size: 1.1rem; margin-bottom: 10px;">No events found for '${searchQuery.trim()}'</p>
+                        <p style="color: var(--text-light); font-size: 0.95rem;">Try searching for fests, hackathons, sports</p>
+                    </div>
+                `;
+            } else {
+                eventGrid.innerHTML = "<p style='grid-column: 1/-1; text-align: center; color: var(--text-light); padding: 40px;'>No events found.</p>";
+            }
             return;
         }
 
@@ -376,7 +385,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Category filter logic
     if (filterBtns.length > 0) {
         filterBtns.forEach(btn => {
-            btn.addEventListener("click", () => {
+                   btn.addEventListener("click", () => {
                 filterBtns.forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
                 activeCategory = btn.textContent.trim();
