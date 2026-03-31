@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
     
-     
     // Initialize Supabase
     const supabaseUrl = 'https://cbqbqncbjxfwrhhgxmjk.supabase.co';
     const supabaseKey = 'sb_publishable_XEBmcn5vcJGWBDO3GH9GRw_f55J9d9_';
@@ -385,7 +384,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Category filter logic
     if (filterBtns.length > 0) {
         filterBtns.forEach(btn => {
-                   btn.addEventListener("click", () => {
+            btn.addEventListener("click", () => {
                 filterBtns.forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
                 activeCategory = btn.textContent.trim();
@@ -394,7 +393,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-      // Search logic — dynamic toggle & debounce
+    // Search logic — dynamic toggle & debounce
     if (searchInput) {
         let debounceTimer;
         searchInput.addEventListener("input", () => {
